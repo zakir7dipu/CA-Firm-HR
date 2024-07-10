@@ -67,20 +67,20 @@ class SettingsController extends Controller
             $webhooks = Webhook::where('created_by', \Auth::user()->creatorId())->get();
             //offer letter
             $Offerletter = GenerateOfferLetter::all();
-            $currOfferletterLang = GenerateOfferLetter::where('created_by',  \Auth::user()->id)->where('lang', $offerlang)->first();
+            $currOfferletterLang = GenerateOfferLetter::where('created_by', \Auth::user()->id)->where('lang', $offerlang)->first();
 
 
             //joining letter
             $Joiningletter = JoiningLetter::all();
-            $currjoiningletterLang = JoiningLetter::where('created_by',  \Auth::user()->id)->where('lang', $joininglang)->first();
+            $currjoiningletterLang = JoiningLetter::where('created_by', \Auth::user()->id)->where('lang', $joininglang)->first();
 
             //Experience Certificate
             $experience_certificate = ExperienceCertificate::all();
-            $curr_exp_cetificate_Lang = ExperienceCertificate::where('created_by',  \Auth::user()->id)->where('lang', $explang)->first();
+            $curr_exp_cetificate_Lang = ExperienceCertificate::where('created_by', \Auth::user()->id)->where('lang', $explang)->first();
 
             //NOC
             $noc_certificate = NOC::all();
-            $currnocLang = NOC::where('created_by',  \Auth::user()->id)->where('lang', $noclang)->first();
+            $currnocLang = NOC::where('created_by', \Auth::user()->id)->where('lang', $noclang)->first();
 
             $file_size = 0;
             foreach (\File::allFiles(storage_path('/framework')) as $file) {
@@ -109,7 +109,7 @@ class SettingsController extends Controller
                     ]
                 );
 
-                $logoName     = 'dark_logo.png';
+                $logoName = 'dark_logo.png';
                 $dir = 'uploads/logo/';
                 $validation = [
                     'mimes:' . 'png',
@@ -178,7 +178,7 @@ class SettingsController extends Controller
                         'company_favicon' => 'image|mimes:png|max:20480',
                     ]
                 );
-                $favicon =  'favicon.png';
+                $favicon = 'favicon.png';
 
 
                 $dir = 'uploads/logo/';
@@ -539,15 +539,15 @@ class SettingsController extends Controller
         $user = \Auth::user();
         // if($user->can('manage-setting'))
         // {
-        $data                      = [];
-        $data['mail_driver']       = $request->mail_driver;
-        $data['mail_host']         = $request->mail_host;
-        $data['mail_port']         = $request->mail_port;
-        $data['mail_username']     = $request->mail_username;
-        $data['mail_password']     = $request->mail_password;
-        $data['mail_encryption']   = $request->mail_encryption;
+        $data = [];
+        $data['mail_driver'] = $request->mail_driver;
+        $data['mail_host'] = $request->mail_host;
+        $data['mail_port'] = $request->mail_port;
+        $data['mail_username'] = $request->mail_username;
+        $data['mail_password'] = $request->mail_password;
+        $data['mail_encryption'] = $request->mail_encryption;
         $data['mail_from_address'] = $request->mail_from_address;
-        $data['mail_from_name']    = $request->mail_from_name;
+        $data['mail_from_name'] = $request->mail_from_name;
 
         return view('setting.test_mail', compact('data'));
         // return view('setting.test_mail');
@@ -648,8 +648,8 @@ class SettingsController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
 
-            $ip             = new IpRestrict();
-            $ip->ip         = $request->ip;
+            $ip = new IpRestrict();
+            $ip->ip = $request->ip;
             $ip->created_by = \Auth::user()->creatorId();
             $ip->save();
 
@@ -681,7 +681,7 @@ class SettingsController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
 
-            $ip     = IpRestrict::find($id);
+            $ip = IpRestrict::find($id);
             $ip->ip = $request->ip;
             $ip->save();
 
@@ -731,10 +731,10 @@ class SettingsController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
 
-            $webhook             = new Webhook();
-            $webhook->module     = $request->module;
-            $webhook->method     = $request->method;
-            $webhook->url        = $request->url;
+            $webhook = new Webhook();
+            $webhook->module = $request->module;
+            $webhook->method = $request->method;
+            $webhook->url = $request->url;
             $webhook->created_by = \Auth::user()->creatorId();
             $webhook->save();
 
@@ -774,7 +774,7 @@ class SettingsController extends Controller
                 return redirect()->back()->with('error', $messages->first());
             }
 
-            $webhook     = Webhook::find($id);
+            $webhook = Webhook::find($id);
             $webhook->module = $request->module;
             $webhook->method = $request->method;
             $webhook->url = $request->url;
@@ -983,26 +983,26 @@ class SettingsController extends Controller
     public function offerletterupdate($lang, Request $request)
     {
 
-        $user = GenerateOfferLetter::updateOrCreate(['lang' =>   $lang, 'created_by' =>  \Auth::user()->id], ['content' => $request->content]);
+        $user = GenerateOfferLetter::updateOrCreate(['lang' => $lang, 'created_by' => \Auth::user()->id], ['content' => $request->content]);
 
         return redirect()->back()->with('success', __('Offer Letter successfully saved.'));
     }
     public function joiningletterupdate($lang, Request $request)
     {
 
-        $user = JoiningLetter::updateOrCreate(['lang' =>   $lang, 'created_by' =>  \Auth::user()->id], ['content' => $request->content]);
+        $user = JoiningLetter::updateOrCreate(['lang' => $lang, 'created_by' => \Auth::user()->id], ['content' => $request->content]);
 
         return redirect()->back()->with('success', __('Joing Letter successfully saved.'));
     }
     public function experienceCertificateupdate($lang, Request $request)
     {
-        $user = ExperienceCertificate::updateOrCreate(['lang' =>   $lang, 'created_by' =>  \Auth::user()->id], ['content' => $request->content]);
+        $user = ExperienceCertificate::updateOrCreate(['lang' => $lang, 'created_by' => \Auth::user()->id], ['content' => $request->content]);
 
         return redirect()->back()->with('success', __('Experience Certificate successfully saved.'));
     }
     public function NOCupdate($lang, Request $request)
     {
-        $user = NOC::updateOrCreate(['lang' =>   $lang, 'created_by' =>  \Auth::user()->id], ['content' => $request->content]);
+        $user = NOC::updateOrCreate(['lang' => $lang, 'created_by' => \Auth::user()->id], ['content' => $request->content]);
 
         return redirect()->back()->with('success', __('NOC successfully saved.'));
     }
@@ -1029,51 +1029,51 @@ class SettingsController extends Controller
         if (isset($request->storage_setting) && $request->storage_setting == 's3') {
             $request->validate(
                 [
-                    's3_key'                  => 'required',
-                    's3_secret'               => 'required',
-                    's3_region'               => 'required',
-                    's3_bucket'               => 'required',
-                    's3_url'                  => 'required',
-                    's3_endpoint'             => 'required',
-                    's3_max_upload_size'      => 'required',
-                    's3_storage_validation'   => 'required',
+                    's3_key' => 'required',
+                    's3_secret' => 'required',
+                    's3_region' => 'required',
+                    's3_bucket' => 'required',
+                    's3_url' => 'required',
+                    's3_endpoint' => 'required',
+                    's3_max_upload_size' => 'required',
+                    's3_storage_validation' => 'required',
                 ]
             );
-            $post['storage_setting']            = $request->storage_setting;
-            $post['s3_key']                     = $request->s3_key;
-            $post['s3_secret']                  = $request->s3_secret;
-            $post['s3_region']                  = $request->s3_region;
-            $post['s3_bucket']                  = $request->s3_bucket;
-            $post['s3_url']                     = $request->s3_url;
-            $post['s3_endpoint']                = $request->s3_endpoint;
-            $post['s3_max_upload_size']         = $request->s3_max_upload_size;
-            $s3_storage_validation              = implode(',', $request->s3_storage_validation);
-            $post['s3_storage_validation']      = $s3_storage_validation;
+            $post['storage_setting'] = $request->storage_setting;
+            $post['s3_key'] = $request->s3_key;
+            $post['s3_secret'] = $request->s3_secret;
+            $post['s3_region'] = $request->s3_region;
+            $post['s3_bucket'] = $request->s3_bucket;
+            $post['s3_url'] = $request->s3_url;
+            $post['s3_endpoint'] = $request->s3_endpoint;
+            $post['s3_max_upload_size'] = $request->s3_max_upload_size;
+            $s3_storage_validation = implode(',', $request->s3_storage_validation);
+            $post['s3_storage_validation'] = $s3_storage_validation;
         }
 
         if (isset($request->storage_setting) && $request->storage_setting == 'wasabi') {
             $request->validate(
                 [
-                    'wasabi_key'                    => 'required',
-                    'wasabi_secret'                 => 'required',
-                    'wasabi_region'                 => 'required',
-                    'wasabi_bucket'                 => 'required',
-                    'wasabi_url'                    => 'required',
-                    'wasabi_root'                   => 'required',
-                    'wasabi_max_upload_size'        => 'required',
-                    'wasabi_storage_validation'     => 'required',
+                    'wasabi_key' => 'required',
+                    'wasabi_secret' => 'required',
+                    'wasabi_region' => 'required',
+                    'wasabi_bucket' => 'required',
+                    'wasabi_url' => 'required',
+                    'wasabi_root' => 'required',
+                    'wasabi_max_upload_size' => 'required',
+                    'wasabi_storage_validation' => 'required',
                 ]
             );
-            $post['storage_setting']            = $request->storage_setting;
-            $post['wasabi_key']                 = $request->wasabi_key;
-            $post['wasabi_secret']              = $request->wasabi_secret;
-            $post['wasabi_region']              = $request->wasabi_region;
-            $post['wasabi_bucket']              = $request->wasabi_bucket;
-            $post['wasabi_url']                 = $request->wasabi_url;
-            $post['wasabi_root']                = $request->wasabi_root;
-            $post['wasabi_max_upload_size']     = $request->wasabi_max_upload_size;
-            $wasabi_storage_validation          = implode(',', $request->wasabi_storage_validation);
-            $post['wasabi_storage_validation']  = $wasabi_storage_validation;
+            $post['storage_setting'] = $request->storage_setting;
+            $post['wasabi_key'] = $request->wasabi_key;
+            $post['wasabi_secret'] = $request->wasabi_secret;
+            $post['wasabi_region'] = $request->wasabi_region;
+            $post['wasabi_bucket'] = $request->wasabi_bucket;
+            $post['wasabi_url'] = $request->wasabi_url;
+            $post['wasabi_root'] = $request->wasabi_root;
+            $post['wasabi_max_upload_size'] = $request->wasabi_max_upload_size;
+            $wasabi_storage_validation = implode(',', $request->wasabi_storage_validation);
+            $post['wasabi_storage_validation'] = $wasabi_storage_validation;
         }
 
         foreach ($post as $key => $data) {
@@ -1115,20 +1115,20 @@ class SettingsController extends Controller
 
         if ($request->google_calender_json_file) {
             // $dir       = storage_path() . '/app/google-calendar';
-            $dir       = storage_path() . '/' . md5(time());
+            $dir = storage_path() . '/' . md5(time());
             if (!is_dir($dir)) {
                 File::makeDirectory($dir, $mode = 0777, true, true);
             }
             $file_name = $request->google_calender_json_file->getClientOriginalName();
             // $file_path =  md5(time()) . "." . $request->google_calender_json_file->getClientOriginalExtension();
-            $file_path =  md5(time()) . "/" . md5(time()) . "." . $request->google_calender_json_file->getClientOriginalExtension();
+            $file_path = md5(time()) . "/" . md5(time()) . "." . $request->google_calender_json_file->getClientOriginalExtension();
 
             $file = $request->file('google_calender_json_file');
             $file->move($dir, $file_path);
-            $post['google_calender_json_file']            = $file_path;
+            $post['google_calender_json_file'] = $file_path;
         }
         if ($request->google_clender_id) {
-            $post['google_clender_id']            = $request->google_clender_id;
+            $post['google_clender_id'] = $request->google_clender_id;
             foreach ($post as $key => $data) {
                 \DB::insert(
                     'insert into settings (`value`, `name`,`created_by`,`created_at`,`updated_at`) values (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE `value` = VALUES(`value`) ',
@@ -1167,9 +1167,9 @@ class SettingsController extends Controller
         $file_path = $request->meta_image->getClientOriginalName();
         $file = $request->file('meta_image');
         $file->move($dir, $file_path);
-        $post['meta_title']     = $request->meta_title;
+        $post['meta_title'] = $request->meta_title;
         $post['meta_description'] = $request->meta_description;
-        $post['meta_image']       = $file_path;
+        $post['meta_image'] = $file_path;
         foreach ($post as $key => $data) {
             \DB::insert(
                 'insert into settings (`value`, `name`,`created_by`,`created_at`,`updated_at`) values (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE `value` = VALUES(`value`) ',
@@ -1221,12 +1221,12 @@ class SettingsController extends Controller
             $post['cookie_logging'] = 'off';
         }
 
-        $post['cookie_title']                   = $request->cookie_title;
-        $post['cookie_description']             = $request->cookie_description;
-        $post['strictly_cookie_title']          = $request->strictly_cookie_title;
-        $post['strictly_cookie_description']    = $request->strictly_cookie_description;
-        $post['more_information_description']   = $request->more_information_description;
-        $post['contactus_url']                  = $request->contactus_url;
+        $post['cookie_title'] = $request->cookie_title;
+        $post['cookie_description'] = $request->cookie_description;
+        $post['strictly_cookie_title'] = $request->strictly_cookie_title;
+        $post['strictly_cookie_description'] = $request->strictly_cookie_description;
+        $post['more_information_description'] = $request->more_information_description;
+        $post['contactus_url'] = $request->contactus_url;
 
         $settings = Utility::settings();
         foreach ($post as $key => $data) {
@@ -1273,8 +1273,21 @@ class SettingsController extends Controller
             $cookie = $request['cookie'][0];
 
             $new_line = implode(',', [
-                $ip, $date, $time, $cookie, $device_type, $browser_language, $browser_name, $os_name,
-                isset($query) ? $query['country'] : '', isset($query) ? $query['region'] : '', isset($query) ? $query['regionName'] : '', isset($query) ? $query['city'] : '', isset($query) ? $query['zip'] : '', isset($query) ? $query['lat'] : '', isset($query) ? $query['lon'] : ''
+                $ip,
+                $date,
+                $time,
+                $cookie,
+                $device_type,
+                $browser_language,
+                $browser_name,
+                $os_name,
+                isset($query) ? $query['country'] : '',
+                isset($query) ? $query['region'] : '',
+                isset($query) ? $query['regionName'] : '',
+                isset($query) ? $query['city'] : '',
+                isset($query) ? $query['zip'] : '',
+                isset($query) ? $query['lat'] : '',
+                isset($query) ? $query['lon'] : ''
             ]);
 
             if (!file_exists(storage_path() . '/uploads/sample/data.csv')) {

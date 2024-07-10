@@ -54,7 +54,7 @@
 @php
     // $logo = asset(Storage::url('uploads/logo/'));
     $logo = \App\Models\Utility::get_file('uploads/logo/');
-    
+
     $lang = \App\Models\Utility::getValByName('default_language');
     $color = isset($settings['theme_color']) ? $settings['theme_color'] : 'theme-4';
     $is_sidebar_transperent = isset($settings['is_sidebar_transperent']) ? $settings['is_sidebar_transperent'] : '';

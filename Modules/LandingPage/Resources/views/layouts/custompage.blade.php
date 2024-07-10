@@ -78,7 +78,7 @@
 
     <style>
         :root {
-            --color-customColor: <?= $color ?>;    
+            --color-customColor: <?=$color ?>;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('css/custom-color.css') }}">
@@ -115,8 +115,8 @@
             <nav class="navbar navbar-expand-md  default top-nav-collapse">
                 <div class="header-left">
                     <a class="navbar-brand bg-transparent" href="#">
-                        <img src="{{ $logo . '/' . $settings['site_logo'] . '?' . time() }}" alt="logo">
-                    </a>
+                        <img src="{{ asset('assets/images/pages/SACO-removebg-preview.png') }}"
+                            alt="{{ env('APP_NAME') }}" class="logo logo-lg" style="height: 40px;" /> </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <ul class="navbar-nav">

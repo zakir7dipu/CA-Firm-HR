@@ -78,7 +78,7 @@
 
     <style>
         :root {
-            --color-customColor: <?= $color ?>;    
+            --color-customColor: <?=$color ?>;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('css/custom-color.css') }}">
@@ -115,8 +115,8 @@
             <nav class="navbar navbar-expand-md  default top-nav-collapse">
                 <div class="header-left">
                     <a class="navbar-brand bg-transparent" href="#">
-                        <img src="{{ $logo . '/' . $settings['site_logo'] . '?' . time() }}" alt="logo">
-                    </a>
+                        <img src="{{ asset('assets/images/pages/SACO-removebg-preview.png') }}"
+                            alt="{{ env('APP_NAME') }}" class="logo logo-lg" style="height: 40px;" /> </a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <ul class="navbar-nav">
@@ -181,7 +181,7 @@
                         @if ($settings['home_live_demo_link'])
                             <a href="{{ $settings['home_live_demo_link'] }}"
                                 class="btn btn-outline-dark">{{ __('Live
-                                                                                                                                                                                                                                                                                                                                Demo') }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Demo') }}
                                 <i data-feather="play-circle" class="ms-2"></i></a>
                         @endif
                         @if ($settings['home_buy_now_link'])
@@ -355,7 +355,7 @@
                             <div class="card   border {{ $key == 1 ? 'bg-primary' : 'bg-transparent' }}">
                                 <div class="card-body text-center">
                                     <span class="theme-avtar avtar avtar-xl mx-auto mb-4">
-                                        <img src="{{ $logo . '/' . $value['discover_logo'] . '?' . time() }}"
+                                        <img src="{{ $logo . '/public/assets/images/pages/SACO-removebg-preview.png' . $value['discover_logo'] . '?' . time() }}"
                                             alt="">
                                     </span>
                                     <h3 class="mb-3 {{ $key == 1 ? '' : 'text-white' }} ">{!! $value['discover_heading'] !!}

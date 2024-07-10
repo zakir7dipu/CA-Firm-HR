@@ -28,8 +28,8 @@
                     <a class="dash-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                         role="button" aria-haspopup="false" aria-expanded="false">
                         <span class="theme-avtar">
-                            <img alt="#"
-                                src="{{ !empty($users->avatar) ? $profile . '/' . $users->avatar : $profile . '/avatar.png' }}"
+                            <img alt="profile  image"
+                                src="{{ !empty($users->avatar) ? $profile . '/' . $users->avatar : $profile . '/public/assets/images/pages/SACO-removebg-preview.png' }}"
                                 class="header-avtar" style="width: 100%; border-radius: 50%;">
                         </span>
                         <span class="hide-mob ms-2"> {{ __('Hi, ') }}{{ Auth::user()->name }}!

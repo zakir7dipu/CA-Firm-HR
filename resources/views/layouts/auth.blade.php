@@ -28,12 +28,9 @@
     $lang = \App::getLocale('lang');
     if ($lang == 'ar' || $lang == 'he') {
         $SITE_RTL = 'on';
-    }
-    elseif($SITE_RTL == 'on') 
-    {
-        $SITE_RTL = 'on';        
-    }
-    else {
+    } elseif ($SITE_RTL == 'on') {
+        $SITE_RTL = 'on';
+    } else {
         $SITE_RTL = 'off';
     }
 
@@ -107,7 +104,7 @@
 
     <style>
         :root {
-            --color-customColor: <?= $color ?>;    
+            --color-customColor: <?=$color ?>;
         }
     </style>
     <link rel="stylesheet" href="{{ asset('css/custom-color.css') }}">
@@ -155,9 +152,8 @@
                     <div class="container">
                         <div class="navbar-brand">
                             <a href="#">
-                                <img src="{{ $logos . '/' . (isset($logo) && !empty($logo) ? $logo . '?' . time() : 'logo-dark.png' . '?' . time()) }}"
-                                    class="logo" alt="{{ config('app.name', 'HRMGO') }}" alt="logo"
-                                    loading="lazy" style="max-height: 50px;" />
+                                <img src="{{ asset('assets/images/pages/SACO-removebg-preview.png') }}"
+                                    alt="{{ env('APP_NAME') }}" class="logo logo-lg" style="height: 40px;" />
                             </a>
                         </div>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"

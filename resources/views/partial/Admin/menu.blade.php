@@ -27,8 +27,9 @@
 
         <a href="{{ route('home') }}" class="b-brand">
             <!-- ========   change your logo hear   ============ -->
-            <img src="{{ $logos . $logo . '?' . time() }}" alt="{{ env('APP_NAME') }}" class="logo logo-lg"
-                style="height: 40px;" />
+            <img src="/public/assets/images/pages/SACO-removebg-preview.png" alt="saco">
+            <img src="{{ $logos . $logo . '?' . time() }}/public/assets/images/pages/SACO-removebg-preview.png"
+                alt="{{ env('APP_NAME') }}" class="logo logo-lg" style="height: 40px;" />
 
         </a>
 
